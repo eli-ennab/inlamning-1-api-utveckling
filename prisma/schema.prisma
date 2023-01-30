@@ -6,3 +6,35 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+model Product {
+	id					Int			@id @default(autoincrement()) @db.UnsignedInt
+	name				String
+	description			String		@db.VarChar(255)
+	price 				Int			@db.UnsignedInt
+	images 				Json		@default("{}")
+	stock_status 		String
+	stock_quantity 		Int			@db.UnsignedInt
+}
+
+model Order {
+	id					Int			@id @default(autoincrement()) @db.UnsignedInt
+	customer_first_name String
+	customer_last_name 	String
+	customer_address 	String
+	customer_postcode 	String
+	customer_city 		String
+	customer_email 		String
+	customer_phone 		String
+	order_total 		Int			@db.UnsignedInt
+	order_items 		OrderItems[]
+}
+
+model OrderItems {
+	product_id			Int			@id @default(autoincrement()) @db.UnsignedInt
+	qty 				Int			@db.UnsignedInt
+	item_price			Int			@db.UnsignedInt
+	item_total			Int			@db.UnsignedInt
+	order				Order?		@relation(fields: [orderId], references: [id])
+	orderId				Int?		@db.UnsignedInt
+}
