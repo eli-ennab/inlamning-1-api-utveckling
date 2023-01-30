@@ -15,28 +15,28 @@ model Product {
 	images 				Json		@default("{}")
 	stock_status 		String
 	stock_quantity 		Int			@db.UnsignedInt
-	order_items 		OrderItems[]
+	// order_items 		OrderItems[]
 }
 
 model Order {
 	id					Int			@id @default(autoincrement()) @db.UnsignedInt
-	customer_first_name String
-	customer_last_name 	String
-	customer_address 	String
-	customer_postcode 	String
-	customer_city 		String
-	customer_email 		String
-	customer_phone 		String
+	customer_first_name String		@db.VarChar(255)
+	customer_last_name 	String		@db.VarChar(255)
+	customer_address 	String		@db.VarChar(255)
+	customer_postcode 	String		@db.VarChar(255)
+	customer_city 		String		@db.VarChar(255)
+	customer_email 		String		@db.VarChar(255)
+	customer_phone 		String		@db.VarChar(255)
 	order_total 		Int			@db.UnsignedInt
-	items 				OrderItems[]
+	// items 			OrderItems[]
 }
 
 model OrderItems {
-	id					Order?		@relation(fields: [order_id], references: [id])
+	// id					Order?		@relation(fields: [order_id], references: [id])
 	order_id			Int?		@db.UnsignedInt
 	product_id			Int			@id @default(autoincrement()) @db.UnsignedInt
 	qty 				Int			@db.UnsignedInt
 	item_price			Int			@db.UnsignedInt
 	item_total			Int			@db.UnsignedInt
-	products			Product[]
+	// products			Product[]
 }
