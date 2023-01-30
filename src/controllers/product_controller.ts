@@ -1,4 +1,4 @@
-// Book Controller
+// Product Controller
 import { Request, Response } from 'express'
 import Debug from 'debug'
 import prisma from '../prisma'
