@@ -22,7 +22,7 @@ export const index = async (req: Request, res: Response) => {
 	}
 }
 
-/*
+
 // Get a single product
 export const show = async (req: Request, res: Response) => {
 	const productId = Number(req.params.productId)
@@ -51,6 +51,11 @@ export const store = async (req: Request, res: Response) => {
 		const product = await prisma.product.create({
 			data: {
 				name: req.body.name,
+				description: req.body.description,
+				price: req.body.price,
+				images: req.body.images,
+				stock_status: req.body.stock_status,
+				stock_quantity: req.body.stock_quantity
 			}
 		})
 
@@ -64,4 +69,4 @@ export const store = async (req: Request, res: Response) => {
 		res.status(500).send({ status: "error", message: "Something went wrong" })
 	}
 }
-*/
+
