@@ -1,5 +1,5 @@
 import express from "express"
-import resource from './_router'
+import products from './products'
 
 // instantiate a new router
 const router = express.Router()
