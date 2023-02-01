@@ -22,6 +22,31 @@ export const index = async (req: Request, res: Response) => {
 	}
 }
 
+// Get a single order
+export const show = async (req: Request, res: Response) => {
+	const orderId = Number(req.params.orderId)
+
+	try {
+		const order = await prisma.order.findUniqueOrThrow({
+			where: {
+				id: orderId,
+			},
+			// include: {
+			// 	items: true,
+			// }
+		})
+
+		res.send({
+			status: "success",
+			data: order,
+		})
+
+	} catch (err) {
+		debug("Error thrown when finding order with id %o: %o", req.params.orderId, err)
+		return res.status(404).send({ status: "error", message: "Not found" })
+	}
+}
+
 // Create an order
 export const store = async (req: Request, res: Response) => {
 	try {
