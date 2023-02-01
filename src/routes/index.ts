@@ -1,21 +1,21 @@
 import express from "express"
-import resource from './_router'
+import products from './products'
+import orders from './orders'
 
 // instantiate a new router
 const router = express.Router()
 
-/**
- * GET /
- */
+// GET /
 router.get('/', (req, res) => {
 	res.send({
-		message: "I AM API, BEEP BOOP",
+		message: "WELCOME TO THE CANDYSHOP",
 	})
 })
 
-/**
- * [EXAMPLE] /resource
- */
-// router.use('/resource', resource)
+// /products
+router.use('/products', products)
+
+// /orders
+router.use('/orders', orders)
 
 export default router
