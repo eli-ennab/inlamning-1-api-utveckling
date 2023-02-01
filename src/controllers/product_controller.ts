@@ -22,6 +22,32 @@ export const index = async (req: Request, res: Response) => {
 	}
 }
 
+// Get a single product
+export const show = async (req: Request, res: Response) => {
+	const productId = Number(req.params.productId)
+
+	try {
+		const product = await prisma.product.findUniqueOrThrow({
+			where: {
+				id: productId,
+			},
+			// include: {
+			// 	authors: true,
+			// 	publisher: true,
+			// }
+		})
+
+		res.send({
+			status: "success",
+			data: product,
+		})
+
+	} catch (err) {
+		debug("Error thrown when finding product with id %o: %o", req.params.productId, err)
+		return res.status(404).send({ status: "error", message: "Not found" })
+	}
+}
+
 // Create a product
 export const store = async (req: Request, res: Response) => {
 	try {
