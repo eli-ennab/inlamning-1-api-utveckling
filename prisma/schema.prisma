@@ -10,11 +10,11 @@ datasource db {
 model Product {
 	id					Int			@id @default(autoincrement()) @db.UnsignedInt
 	name				String
-	description			String		@db.VarChar(255)
-	price 				Int			@db.UnsignedInt
-	images 				Json		@default("{}")
+	description			String		@db.Text
+	price 				Int
+	images 				Json
 	stock_status 		String
-	stock_quantity 		Int			@db.UnsignedInt
+	stock_quantity 		Int
 	// order_items 		OrderItems[]
 }
 
@@ -26,8 +26,8 @@ model Order {
 	customer_postcode 	String
 	customer_city 		String
 	customer_email 		String
-	customer_phone 		String
-	order_total 		Int			@db.UnsignedInt
+	customer_phone 		String?
+	order_total 		Int
 	// items 				OrderItems[]
 }
 

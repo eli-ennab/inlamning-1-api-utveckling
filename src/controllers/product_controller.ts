@@ -21,3 +21,28 @@ export const index = async (req: Request, res: Response) => {
 		res.status(500).send({ status: "error", message: "Something went wrong" })
 	}
 }
+
+// Create a product
+export const store = async (req: Request, res: Response) => {
+	try {
+		const product = await prisma.product.create({
+			data: {
+				name: req.body.name,
+				description: req.body.description,
+				price: req.body.price,
+				images: req.body.images,
+				stock_status: req.body.stock_status,
+				stock_quantity: req.body.stock_quantity
+			}
+		})
+
+		res.send({
+			status: "success",
+			data: product,
+		})
+
+	} catch (err) {
+		debug("Error thrown when creating a book %o: %o", req.body, err)
+		res.status(500).send({ status: "error", message: "Cannot create products" })
+	}
+}
