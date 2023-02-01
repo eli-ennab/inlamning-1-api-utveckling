@@ -22,7 +22,7 @@ export const index = async (req: Request, res: Response) => {
 	}
 }
 
-
+/*
 // Get a single product
 export const show = async (req: Request, res: Response) => {
 	const productId = Number(req.params.productId)
@@ -69,4 +69,4 @@ export const store = async (req: Request, res: Response) => {
 		res.status(500).send({ status: "error", message: "Something went wrong" })
 	}
 }
-
+*/
