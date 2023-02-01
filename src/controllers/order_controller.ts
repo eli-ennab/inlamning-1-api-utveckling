@@ -34,7 +34,7 @@ export const store = async (req: Request, res: Response) => {
 				customer_city: req.body.customer_city,
 				customer_email: req.body.customer_email,
 				customer_phone: req.body.customer_phone,
-				// order_total: req.body.order_total
+				order_total: req.body.order_total
 			}
 		})
 
