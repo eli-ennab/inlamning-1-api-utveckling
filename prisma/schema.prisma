@@ -27,8 +27,8 @@ model Order {
 	customer_city 		String
 	customer_email 		String
 	customer_phone 		String?
-	order_total 		Int
-	// items 				OrderItems[]
+	// order_total 		Int
+	// order_items 		OrderItems[]
 }
 
 model OrderItems {

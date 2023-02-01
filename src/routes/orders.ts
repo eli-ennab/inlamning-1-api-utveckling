@@ -1,5 +1,5 @@
 import express from 'express'
-import { index } from '../controllers/order_controller'
+import { index, store } from '../controllers/order_controller'
 const router = express.Router()
 
 
@@ -7,6 +7,6 @@ const router = express.Router()
 router.get('/', index)
 
 // POST /orders
-// router.post('/orders', store)
+router.post('/', store)
 
 export default router

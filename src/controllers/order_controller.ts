@@ -9,11 +9,11 @@ const debug = Debug('prisma-products:product_controller')
 // Get all orders
 export const index = async (req: Request, res: Response) => {
 	try {
-		const products = await prisma.product.findMany()
+		const orders = await prisma.order.findMany()
 
 		res.send({
 			status: "success",
-			data: products,
+			data: orders,
 		})
 
 	} catch (err) {
@@ -22,7 +22,6 @@ export const index = async (req: Request, res: Response) => {
 	}
 }
 
-/*
 // Create an order
 export const store = async (req: Request, res: Response) => {
 	try {
@@ -35,7 +34,7 @@ export const store = async (req: Request, res: Response) => {
 				customer_city: req.body.customer_city,
 				customer_email: req.body.customer_email,
 				customer_phone: req.body.customer_phone,
-				order_total: req.body.order_total
+				// order_total: req.body.order_total
 			}
 		})
 
@@ -46,7 +45,6 @@ export const store = async (req: Request, res: Response) => {
 
 	} catch (err) {
 		debug("Error thrown when creating a book %o: %o", req.body, err)
-		res.status(500).send({ status: "error", message: "Cannot get products" })
+		res.status(500).send({ status: "error", message: "Cannot create order" })
 	}
 }
-*/
