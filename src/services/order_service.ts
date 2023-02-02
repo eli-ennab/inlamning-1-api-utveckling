@@ -40,8 +40,8 @@ export const createOrder = async (data: CreateOrderData) => {
 			customer_city: data.customer_city,
 			customer_email: data.customer_email,
 			customer_phone: data.customer_phone,
-			order_total: data.order_total,
-		}
+			order_total: data.order_total
+		},
 	})
 }
 

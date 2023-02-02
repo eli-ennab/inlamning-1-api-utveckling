@@ -8,18 +8,18 @@ datasource db {
 }
 
 model Product {
-	id					Int			@id @default(autoincrement()) @db.UnsignedInt
+	id					Int				@id @default(autoincrement()) @db.UnsignedInt
 	name				String
-	description			String		@db.Text
+	description			String			@db.Text
 	price 				Int
 	images 				Json
 	stock_status 		String
 	stock_quantity 		Int
-	// order_items 		OrderItems[]
+	order_items 		OrderItems[]
 }
 
 model Order {
-	id					Int			@id @default(autoincrement()) @db.UnsignedInt
+	id					Int				@id @default(autoincrement()) @db.UnsignedInt
 	customer_first_name String
 	customer_last_name 	String
 	customer_address 	String
@@ -27,16 +27,17 @@ model Order {
 	customer_city 		String
 	customer_email 		String
 	customer_phone 		String?
-	order_total 		Int			@db.UnsignedInt
-	order_items 		OrderItems[]
+	order_total 		Int				@db.UnsignedInt
+	items 				OrderItems[]
 }
 
 model OrderItems {
-	id					Order?		@relation(fields: [orderId], references: [id])
-	orderId				Int?		@db.UnsignedInt
-	productId			Int			@id @default(autoincrement()) @db.UnsignedInt
-	qty 				Int			@db.UnsignedInt
-	item_price			Int			@db.UnsignedInt
-	item_total			Int			@db.UnsignedInt
-	// products			Product[]
+  id                  Int         		@id @default(autoincrement()) @db.UnsignedInt
+  orderId             Int?        		@db.UnsignedInt
+  order               Order?    		@relation(fields: [orderId], references: [id])
+  productId           Int         		@db.UnsignedInt
+  product             Product?    		@relation(fields: [productId], references: [id])
+  qty                 Int         		@db.UnsignedInt
+  item_price          Int         		@db.UnsignedInt
+  item_total          Int         		@db.UnsignedInt
 }
