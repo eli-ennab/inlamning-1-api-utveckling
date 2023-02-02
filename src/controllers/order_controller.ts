@@ -5,7 +5,7 @@ import { Request, Response } from 'express'
 import { validationResult } from 'express-validator'
 import Debug from 'debug'
 import prisma from '../prisma'
-import { getOrders } from '../services/order_service'
+import { getOrder, getOrders } from '../services/order_service'
 
 const debug = Debug('prisma-products:product_controller')
 
@@ -34,14 +34,7 @@ export const show = async (req: Request, res: Response) => {
 	const orderId = Number(req.params.orderId)
 
 	try {
-		const order = await prisma.order.findUniqueOrThrow({
-			where: {
-				id: orderId,
-			},
-			// include: {
-			// 	items: true,
-			// }
-		})
+		const order = await getOrder(orderId)
 
 		res.send({
 			status: "success",
