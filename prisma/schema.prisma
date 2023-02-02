@@ -28,13 +28,13 @@ model Order {
 	customer_email 		String
 	customer_phone 		String?
 	order_total 		Int			@db.UnsignedInt
-	// order_items 		OrderItems[]
+	order_items 		OrderItems[]
 }
 
 model OrderItems {
-	// id					Order?		@relation(fields: [order_id], references: [id])
-	// order_id			Int?		@db.UnsignedInt
-	product_id			Int			@id @default(autoincrement()) @db.UnsignedInt
+	id					Order?		@relation(fields: [orderId], references: [id])
+	orderId				Int?		@db.UnsignedInt
+	productId			Int			@id @default(autoincrement()) @db.UnsignedInt
 	qty 				Int			@db.UnsignedInt
 	item_price			Int			@db.UnsignedInt
 	item_total			Int			@db.UnsignedInt
