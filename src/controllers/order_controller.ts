@@ -1,5 +1,6 @@
 // Product Controller
 import { Request, Response } from 'express'
+import { validationResult } from 'express-validator'
 import Debug from 'debug'
 import prisma from '../prisma'
 
@@ -49,6 +50,14 @@ export const show = async (req: Request, res: Response) => {
 
 // Create an order
 export const store = async (req: Request, res: Response) => {
+	const validatonErrors = validationResult(req)
+	if(!validatonErrors.isEmpty()) {
+		return res.status(400).send({
+			status: "fail",
+			data: validatonErrors.array(),
+		})
+	}
+
 	try {
 		const order = await prisma.order.create({
 			data: {
