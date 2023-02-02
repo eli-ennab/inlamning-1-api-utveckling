@@ -42,6 +42,13 @@ export const createOrder = async (data: CreateOrderData) => {
 			customer_phone: data.customer_phone,
 			order_total: data.order_total
 		},
+		// include: {
+		// 	order_id: items.order_id,
+		// 	product_id: items.product_id,
+		// 	qty: items.qty,
+		// 	item_price: items.item_price,
+		// 	item_total: items.item_total,
+		// }
 	})
 }
 
