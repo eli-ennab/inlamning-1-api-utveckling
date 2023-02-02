@@ -1,15 +1,20 @@
-// Product Controller
+/**
+ * Order Controller
+ */
 import { Request, Response } from 'express'
+import { validationResult } from 'express-validator'
 import Debug from 'debug'
 import prisma from '../prisma'
+import { getOrder, getOrders } from '../services/order_service'
 
-// Create a new debug instance
 const debug = Debug('prisma-products:product_controller')
 
-// Get all orders
+/**
+ * Get all orders
+ */
 export const index = async (req: Request, res: Response) => {
 	try {
-		const orders = await prisma.order.findMany()
+		const orders = await getOrders()
 
 		res.send({
 			status: "success",
@@ -22,19 +27,14 @@ export const index = async (req: Request, res: Response) => {
 	}
 }
 
-// Get a single order
+/**
+ * Get a single order
+ */
 export const show = async (req: Request, res: Response) => {
 	const orderId = Number(req.params.orderId)
 
 	try {
-		const order = await prisma.order.findUniqueOrThrow({
-			where: {
-				id: orderId,
-			},
-			// include: {
-			// 	items: true,
-			// }
-		})
+		const order = await getOrder(orderId)
 
 		res.send({
 			status: "success",
@@ -47,8 +47,18 @@ export const show = async (req: Request, res: Response) => {
 	}
 }
 
-// Create an order
+/**
+ * Create an order
+ */
 export const store = async (req: Request, res: Response) => {
+	const validatonErrors = validationResult(req)
+	if(!validatonErrors.isEmpty()) {
+		return res.status(400).send({
+			status: "fail",
+			data: validatonErrors.array(),
+		})
+	}
+
 	try {
 		const order = await prisma.order.create({
 			data: {
