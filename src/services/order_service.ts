@@ -21,9 +21,9 @@ export const getOrder = async (orderId: number) => {
 		where: {
 			id: orderId,
 		},
-		// include: {
-		// 	items: true,
-		// }
+		include: {
+			items: true,
+		}
 	})
 }
 
