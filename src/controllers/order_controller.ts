@@ -6,9 +6,6 @@ import { validationResult } from 'express-validator'
 import Debug from 'debug'
 import prisma from '../prisma'
 
-/**
- * Create a new debug instance
-*/
 const debug = Debug('prisma-products:order_controller')
 
 // Get all orders

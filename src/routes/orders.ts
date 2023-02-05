@@ -3,7 +3,6 @@ import { body } from 'express-validator'
 import { index, store, show } from '../controllers/order_controller'
 const router = express.Router()
 
-
 // GET /orders
 router.get('/', index)
 
