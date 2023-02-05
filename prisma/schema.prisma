@@ -33,10 +33,10 @@ model Order {
 
 model OrderItems {
   id                  Int         		@id @default(autoincrement()) @db.UnsignedInt
-  orderId             Int?        		@db.UnsignedInt
-  order               Order?    		@relation(fields: [orderId], references: [id])
+  orderId             Int        		@db.UnsignedInt
+  order               Order    			@relation(fields: [orderId], references: [id])
   productId           Int         		@db.UnsignedInt
-  product             Product?    		@relation(fields: [productId], references: [id])
+  product             Product    		@relation(fields: [productId], references: [id])
   qty                 Int         		@db.UnsignedInt
   item_price          Int         		@db.UnsignedInt
   item_total          Int         		@db.UnsignedInt

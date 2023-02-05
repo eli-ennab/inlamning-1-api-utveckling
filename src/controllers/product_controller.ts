@@ -4,7 +4,6 @@
 import { Request, Response } from 'express'
 import Debug from 'debug'
 import prisma from '../prisma'
-import { getProduct, getProducts } from '../services/product_service'
 
 const debug = Debug('prisma-products:product_controller')
 
@@ -13,11 +12,13 @@ const debug = Debug('prisma-products:product_controller')
  */
 export const index = async (req: Request, res: Response) => {
 	try {
-		const products = await getProducts()
+		const products = await prisma.product.findMany()
+
 		res.send({
 			status: "success",
 			data: products,
 		})
+
 	} catch (err) {
 		debug("Error thrown when finding products", err)
 		res.status(500).send({ status: "error", message: "Something went wrong" })
@@ -31,11 +32,17 @@ export const show = async (req: Request, res: Response) => {
 	const productId = Number(req.params.productId)
 
 	try {
-		const product = await getProduct(productId)
+		const product = await prisma.product.findUniqueOrThrow({
+			where: {
+				id: productId,
+			},
+		})
+
 		res.send({
 			status: "success",
 			data: product,
 		})
+
 	} catch (err) {
 		debug("Error thrown when finding product with id %o: %o", req.params.productId, err)
 		return res.status(404).send({ status: "error", message: "Not found" })
