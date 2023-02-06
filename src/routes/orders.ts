@@ -12,7 +12,7 @@ router.post('/', [
 	body('customer_postcode').isString().withMessage('has to be a string').bail().isLength({ max: 6 }).withMessage('has to be less than 7 chars long'),
 	body('customer_city').isString().withMessage('has to be a string').bail().isLength({ min: 2 }).withMessage('has to at least 2 chars long'),
 	body('customer_email').isEmail().bail().withMessage('has to be an emailaddress'),
-	body('customer_phone').optional().isMobilePhone('en-US').withMessage('invalid telephone number format')
+	body('customer_phone').optional()
 ], store)
 
 export default router
