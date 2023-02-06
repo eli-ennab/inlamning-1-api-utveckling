@@ -86,10 +86,7 @@ export const store = async (req: Request, res: Response) => {
 
 		return res.send({
 			status: "success",
-			data: order,
-			// include: {
-			// 	order_items: true,
-			// }
+			data: order
 		})
 
 	} catch (err) {
