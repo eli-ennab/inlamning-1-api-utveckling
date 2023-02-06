@@ -17,7 +17,6 @@ export const index = async (req: Request, res: Response) => {
 			status: "success",
 			data: orders,
 		})
-
 	} catch (err) {
 		debug("Error thrown when finding products", err)
 		res.status(500).send({ status: "error", message: "Something went wrong" })
@@ -29,7 +28,6 @@ export const index = async (req: Request, res: Response) => {
  */
 export const show = async (req: Request, res: Response) => {
 	const orderId = Number(req.params.orderId)
-
 	try {
 		const order = await prisma.order.findUniqueOrThrow({
 			where: {
@@ -39,12 +37,10 @@ export const show = async (req: Request, res: Response) => {
 				order_items: true,
 			}
 		})
-
 		res.send({
 			status: "success",
 			data: order,
 		})
-
 	} catch (err) {
 		debug("Error thrown when finding order with id %o: %o", req.params.orderId, err)
 		return res.status(404).send({ status: "error", message: "Not found" })
@@ -62,7 +58,6 @@ export const store = async (req: Request, res: Response) => {
 			data: validatonErrors.array(),
 		})
 	}
-
 	try {
 		const order = await prisma.order.create({
 			data: {
@@ -83,12 +78,10 @@ export const store = async (req: Request, res: Response) => {
 				order_items: true,
 			}
 		})
-
 		return res.send({
 			status: "success",
 			data: order
 		})
-
 	} catch (err) {
 		debug("Error thrown when creating an order %o: %o", req.body, err)
 		res.status(500).send({ status: "error", message: "Cannot create order" })

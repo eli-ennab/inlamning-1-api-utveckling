@@ -1,21 +1,17 @@
 import express from 'express'
-import { index, store, show} from '../controllers/product_controller'
 import { body } from 'express-validator'
+import { index, store, show } from '../controllers/product_controller'
 const router = express.Router()
 
-// GET /products
 router.get('/', index)
-
-// GET /products/:productId
 router.get('/:productId', show)
-
-// POST /products
-router.post('/',
-	body('name').isString(),
-	body('price').isLength( { min: 1 }),
-	body('images').isJSON(),
-	body('stock_status').isString(),
-	body('stock_quantity').isLength( { min: 0 })
-, store)
+router.post('/', [
+	body('name').isString().withMessage('has to be a string').bail().isLength({ min: 2 }).withMessage('has to at least 2 chars long'),
+	body('description').isString().withMessage('has to be a string').bail().isLength({ min: 2 }).withMessage('has to at least 2 chars long'),
+	body('price').isNumeric().withMessage('has to be a number').bail().isLength({ min: 1 }).withMessage('has to at least 1'),
+	body('images').isJSON().withMessage('has to be JSON').bail(),
+	body('stock_status').isString().withMessage('has to be a string').bail().isLength({ min: 2 }).withMessage('has to at least 2 chars long'),
+	body('stock_quantity').isLength( { min: 0 } ).bail(),
+], store)
 
 export default router

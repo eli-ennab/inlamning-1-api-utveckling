@@ -3,13 +3,8 @@ import { body } from 'express-validator'
 import { index, store, show } from '../controllers/order_controller'
 const router = express.Router()
 
-// GET /orders
 router.get('/', index)
-
-// GET /orders/:orderId
 router.get('/:orderId', show)
-
-// POST /orders
 router.post('/', [
 	body('customer_first_name').isString().withMessage('has to be a string').bail().isLength({ min: 2 }).withMessage('has to at least 2 chars long'),
 	body('customer_last_name').isString().withMessage('has to be a string').bail().isLength({ min: 2 }).withMessage('has to at least 2 chars long'),
