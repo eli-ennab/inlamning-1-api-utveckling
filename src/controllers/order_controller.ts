@@ -8,7 +8,9 @@ import prisma from '../prisma'
 
 const debug = Debug('prisma-products:order_controller')
 
-// Get all orders
+/**
+* Get all orders
+*/
 export const index = async (req: Request, res: Response) => {
 	try {
 		const orders = await prisma.order.findMany()
