@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: bojysihaxic4acntej5w-mysql.services.clever-cloud.com:3306
--- Generation Time: Feb 06, 2023 at 11:37 AM
+-- Generation Time: Feb 07, 2023 at 04:56 PM
 -- Server version: 8.0.22-13
 -- PHP Version: 7.2.34
 
@@ -40,15 +40,6 @@ CREATE TABLE `Order` (
   `order_total` int UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `Order`
---
-
-INSERT INTO `Order` (`id`, `customer_first_name`, `customer_last_name`, `customer_address`, `customer_postcode`, `customer_city`, `customer_email`, `customer_phone`, `order_total`) VALUES
-(2, 'Eli', 'Kom igen', 'Mogens 10', '12345', 'Malmö', 'eli@dundermifflin.org', '0739-393939', 1),
-(3, 'Elina', 'Ennab', 'Mogensgatan 5 B', '21446', 'MALMÖ', 'elinaennab@gmail.com', '0739516398', 12),
-(4, 'Elina', 'Ennab', 'Mogensgatan 5 B', '21446', 'MALMÖ', 'elinaennab@gmail.com', '0739516398', 7);
-
 -- --------------------------------------------------------
 
 --
@@ -63,15 +54,6 @@ CREATE TABLE `OrderItems` (
   `item_price` int UNSIGNED NOT NULL,
   `item_total` int UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `OrderItems`
---
-
-INSERT INTO `OrderItems` (`id`, `order_id`, `product_id`, `qty`, `item_price`, `item_total`) VALUES
-(2, 2, 1, 1, 8, 8),
-(3, 3, 3, 1, 12, 12),
-(4, 4, 2, 1, 7, 7);
 
 -- --------------------------------------------------------
 
@@ -94,10 +76,10 @@ CREATE TABLE `Product` (
 --
 
 INSERT INTO `Product` (`id`, `name`, `description`, `price`, `images`, `stock_status`, `stock_quantity`) VALUES
-(1, 'Banana Bubs', '<p>Banan/gräddkola</p>\n<p>Innehållsförteckning: Glukos-fruktossirap, socker, majsstärkelse, vatten, surhetsreglerande medel (äppelsyra, natriumcitrat), potatisprotein, aromämnen, färgämnen: (E150d, E100), kokosolja, ytbehandlingsmedel (karnaubavax).</p>\n<p><em>Alla priser är per skopa.</em></p>\n', 8, '{\"large\": \"/storage/products/156622.png\", \"thumbnail\": \"/storage/products/thumbnails/156622-300x300.png\"}', 'instock', 8),
-(2, 'Colanappar', '<p>Vingummi med colasmak</p>\n<p>Innehållsförteckning: Glukossirap, socker, gelatin, druvsocker, syra: citronsyra, karamelliserat socker, arom, palmolja, ytbehandlingsmedel: bivax vitt och gult, karnaubavax.</p>\n<p>Kan innehålla VETE.</p>\n<p><em>Alla priser är per skopa.</em></p>\n', 7, '{\"large\": \"/storage/products/173452.png\", \"thumbnail\": \"/storage/products/thumbnails/173452-300x300.png\"}', 'instock', 2),
-(3, 'Gott & Blandat Giants', '<p>En mix av lakrits och gelé med fruktsmak</p>\n<p>Innehållsförteckning: Socker, glukossirap, glukos-fruktossirap, stärkelse, VETEMJÖL, melass, syra (citronsyra), fuktighetsbevarande medel (sorbitoler, glycerol), lakritsextrakt, salt, vegetabiliska oljor (kokos, palm), aromer, färgämnen (E153, E120, E100, E141), ytbehandlingsmedel (bivax), stabiliseringsmedel (E471).</p>\n<p><em>Alla priser är per skopa.</em></p>\n', 12, '{\"large\": \"/storage/products/1997509.png\", \"thumbnail\": \"/storage/products/thumbnails/1997509-300x300.png\"}', 'instock', 5),
-(4, 'Cola Rocketz', '<p>Fylld brun lakrits med colasmak.</p>\n<p>Innehållsförteckning: Socker, glukos-fruktossirap, VETEMJÖL, surhetsreglerande medel (äppelsyra, citronsyra), helt härdat vegetabiliskt fett (palmkärna, kokos), fuktighetsbevarande medel (glycerol), emulgeringsmedel (mono- och diglycerider av fettsyror), förtjockningsmedel (arabiskt gummi), modifierad majsstärkelse, MALTEXTRAKT FRÅN KORN, aromämne, kakaopulver, sirap, salt, ytbehandlingsmedel (karnaubavax).</p>\n<p><em>Alla priser är per skopa.</em></p>\n', 8, '{\"large\": \"/storage/products/2502327.png\", \"thumbnail\": \"/storage/products/thumbnails/2502327-300x300.png\"}', 'instock', 8);
+(8, 'Banana Bubs', '<p>Banan/gräddkola</p>\n<p>Innehållsförteckning: Glukos-fruktossirap, socker, majsstärkelse, vatten, surhetsreglerande medel (äppelsyra, natriumcitrat), potatisprotein, aromämnen, färgämnen: (E150d, E100), kokosolja, ytbehandlingsmedel (karnaubavax).</p>\n<p><em>Alla priser är per skopa.</em></p>\n', 8, '{\"large\": \"/storage/products/156622.png\", \"thumbnail\": \"/storage/products/thumbnails/156622-300x300.png\"}', 'instock', 8),
+(9, 'Colanappar', '<p>Vingummi med colasmak</p>\n<p>Innehållsförteckning: Glukossirap, socker, gelatin, druvsocker, syra: citronsyra, karamelliserat socker, arom, palmolja, ytbehandlingsmedel: bivax vitt och gult, karnaubavax.</p>\n<p>Kan innehålla VETE.</p>\n<p><em>Alla priser är per skopa.</em></p>\n', 7, '{\"large\": \"/storage/products/173452.png\", \"thumbnail\": \"/storage/products/thumbnails/173452-300x300.png\"}', 'instock', 2),
+(10, 'Gott & Blandat Giants', '<p>En mix av lakrits och gelé med fruktsmak</p>\n<p>Innehållsförteckning: Socker, glukossirap, glukos-fruktossirap, stärkelse, VETEMJÖL, melass, syra (citronsyra), fuktighetsbevarande medel (sorbitoler, glycerol), lakritsextrakt, salt, vegetabiliska oljor (kokos, palm), aromer, färgämnen (E153, E120, E100, E141), ytbehandlingsmedel (bivax), stabiliseringsmedel (E471).</p>\n<p><em>Alla priser är per skopa.</em></p>\n', 12, '{\"large\": \"/storage/products/1997509.png\", \"thumbnail\": \"/storage/products/thumbnails/1997509-300x300.png\"}', 'instock', 5),
+(11, 'Cola Rocketz', '<p>Fylld brun lakrits med colasmak.</p>\n<p>Innehållsförteckning: Socker, glukos-fruktossirap, VETEMJÖL, surhetsreglerande medel (äppelsyra, citronsyra), helt härdat vegetabiliskt fett (palmkärna, kokos), fuktighetsbevarande medel (glycerol), emulgeringsmedel (mono- och diglycerider av fettsyror), förtjockningsmedel (arabiskt gummi), modifierad majsstärkelse, MALTEXTRAKT FRÅN KORN, aromämne, kakaopulver, sirap, salt, ytbehandlingsmedel (karnaubavax).</p>\n<p><em>Alla priser är per skopa.</em></p>\n', 8, '{\"large\": \"/storage/products/2502327.png\", \"thumbnail\": \"/storage/products/thumbnails/2502327-300x300.png\"}', 'instock', 8);
 
 -- --------------------------------------------------------
 
@@ -161,19 +143,19 @@ ALTER TABLE `_prisma_migrations`
 -- AUTO_INCREMENT for table `Order`
 --
 ALTER TABLE `Order`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `OrderItems`
 --
 ALTER TABLE `OrderItems`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `Product`
 --
 ALTER TABLE `Product`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables
